@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-title" content="" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="viewport"content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-itunes-app" content="app-id=" />
+    <meta name="description" content="DESCRIPTION" />
+    <meta name="keywords" content="KEYWORDS" />
+    <meta name="format-detection" content="telephone=no" />
+    <script type="text/javascript" src="./js/echarts.min.js" ></script>
+    <link rel="stylesheet" href="./css/pie.css">
+    <title>水果统计</title>
+   </head>
+   <body>
+       <div class="container"></div>
+        <div class="title_bar">水果统计</div>
+       <div class="monitor_frame">
+           <div class="monitor_frame_title">监控台</div>
+       <div id="monitor"></div>
+           <div class="monitor_text">
+               <div class="lay">
+                   <div class="already_completed">
+                       <div class="lable_name">已完成：</div>
+                       <div class="already_completed_value">1,255</div>
+                   </div>
+                   <div class="uncompleted">
+                       <div class="lable_name">未完成：</div>
+                       <div class="uncompleted_value">941</div>
+                   </div>
+                   <div class="exception">
+                       <div class="lable_name">异&nbsp;常：</div>
+                       <div class="exception_value">1,050</div>
+                   </div>
+               </div>
+               <div class="lay">
+                   <div class="on_doing">
+                       <div class="lable_name">进行中：</div>
+                       <div class="on_doing_value">1,050</div>
+                   </div>
+               </div>
+           </div>
+
+       <script type="text/javascript">
+            var dom = document.getElementById("monitor");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            // var data = genData();
+            var data = setData();
+            option = {
+                title : {
+                    text: '',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    right: 10,
+                    top: 130,
+                    bottom: 20,
+                    data: data.legendData,
+
+                    selected: data.selected
+                },
+                series : [
+                    {
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['40%', '50%'],
+                        data: data.seriesData,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            normal: {
+                                //color: '#ffff33'
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                lineStyle: {
+                                    color: 'rgba(255, 255, 255, 0.3)'
+                                }
+                            }
+                        },
+                    }
+                ]
+            };
+
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+
+            function setData() {
+                var legendData = [];
+                var seriesData = [];
+                var selected = {};
+                var data = getData();
+                // console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    legendData.push(data[i].name);
+                    seriesData.push({
+                        name: data[i].name,
+                        value: data[i].value,
+                        itemStyle: {
+                            color: data[i].color
+                        },
+                        label: {
+                            normal: {
+                                position: 'inner',
+                                show : false
+                            }
+                        }
+                        });
+                }
+                return {
+                    legendData: legendData,
+                    seriesData: seriesData,
+                    selected: selected
+                };
+            }
+
+            // 获取后台数据
+            function getData() {
+                var dataList = [
+                    {
+                        name: 'apple',
+                        value: '40',
+                        color: '#00cc00'
+                    },{
+                        name: 'banana',
+                        value: '20',
+                        color: '#003399'
+                    },{
+                        name: 'orange',
+                        value: '10',
+                        color: '#993399 '
+                    },{
+                        name: 'pear',
+                        value: '20',
+                        color: '#990033'
+                    },{
+                        name: 'other',
+                        value: '10',
+                        color: '#ccff00'
+                    }
+                ]
+                return dataList;
+            }
+       </script>
+       </div>
+       </div>
+   </body>
+</html>

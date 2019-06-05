@@ -1,0 +1,56 @@
+body {
+    margin: 0 !important;
+}
+.title_bar {
+    height: 60px;
+    margin-top: 0px;
+    padding-left: 50px;
+    padding-top: 18px;
+    color: #FFFFFF;
+    background: #0696d3;
+    font-size: 24px;
+}
+.monitor_frame {
+    width: 600px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #d9d9d9;
+}
+.monitor_frame_title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    background: #e9e9e9;
+    padding-left: 50px;
+}
+#monitor {
+    width: 500px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.monitor_text {
+    border-top: 1px solid #d9d9d9;
+}
+.lay {
+    height: 50px;
+    line-height: 50px;
+}
+.already_completed {
+    float: left;
+    width: 300px;
+}
+.uncompleted {
+    float: left;
+    width: 300px;
+}
+.lable_name {
+    float: left;
+    width: 70px;
+    padding-left: 30px;
+}
+.already_completed_value {
+    width: 100px;
+    padding-left: 100px;
+}
